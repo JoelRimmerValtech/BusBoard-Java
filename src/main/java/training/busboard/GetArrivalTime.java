@@ -13,7 +13,9 @@ public class GetArrivalTime {
 
     public List<Arrival> getTimes(String stopID) {
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
-        List<Arrival> arrivals = client.target("https://api.tfl.gov.uk/StopPoint/" + stopID + "/Arrivals")
+        List<Arrival> arrivals = client.target("https://api.tfl.gov.uk/StopPoint")
+                .path(stopID)
+                .path("Arrivals")
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(new GenericType<List<Arrival>>() {
                 });

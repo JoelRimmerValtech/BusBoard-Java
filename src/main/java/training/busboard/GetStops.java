@@ -10,9 +10,13 @@ import java.util.List;
 
 public class GetStops {
 
-    public List<Stop> getStops (String lon, String lat) {
+    public List<Stop> getStops (double lon, double lat) {
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
-        List<Stop> stops = client.target("https://api.tfl.gov.uk/StopPoint?stopTypes=NaptanPublicBusCoachTram&radius=1000&lat=" + lat + "&lon=" + lon)
+        List<Stop> stops = client.target("https://api.tfl.gov.uk/StopPoint")
+                .queryParam("stopTypes","NaptanPublicBusCoachTram")
+                .queryParam("radius",1000)
+                .queryParam("lat",lat)
+                .queryParam("lon",lon)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(StopPoints.class).getStopPoints();
         stops=stops.subList(0,2);

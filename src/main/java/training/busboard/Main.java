@@ -13,13 +13,13 @@ public class Main {
         System.out.println();
 
         Location location = new GetLocation().getLocation(postcode);
-        List<Stop> stops = new GetStops().getStops(Double.toString(location.getLongitude()), Double.toString(location.getLatitude()));
+        List<Stop> stops = new GetStops().getStops(location.getLongitude(), location.getLatitude());
         stops.forEach(stop -> {
             System.out.println("Stop Name: " + stop.getCommonName());
             stop.getArrivals().forEach(arrival -> {
                 System.out.print("Bus Number: " + arrival.getLineName());
                 System.out.print(", Heading Towards: " + arrival.getDestinationName());
-                System.out.println(", Arriving in: " + arrival.getTimeToStation());
+                System.out.println(", Arriving in: " + arrival.getTimeToStation() / 60 + " minutes");
             });
             System.out.println();
         });

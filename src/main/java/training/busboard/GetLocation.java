@@ -11,7 +11,8 @@ public class GetLocation {
 
     public Location getLocation (String postcode) {
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
-        Location location = client.target("https://api.postcodes.io/postcodes/" + postcode)
+        Location location = client.target("https://api.postcodes.io/postcodes")
+                .path(postcode)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(PostcodeLocation.class).getResult();
 
