@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout">
+
+    <!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
+
+    <head>
+        <title>Dora is Looking For your buses</title>
+    </head>
+    <body background="https://media.giphy.com/media/26gJyaZbXeKvCzzr2/giphy.gif">
+        <div layout:fragment="content" class="container body-content">
+            <h2>Swiper no Swiping</h2>
+            <div>
+                <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
+                <div>
+                    <img src="https://i.ytimg.com/vi/Rrrvy5sH8hw/maxresdefault.jpg">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

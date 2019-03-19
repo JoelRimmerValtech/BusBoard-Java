@@ -7,21 +7,25 @@
 </head>
 <body>
 <div layout:fragment="content" class="container body-content">
-    <div class="jumbotron">
-        <h1>BusBoard</h1>
-        <p class="lead">For all your bus info needs. Enter a postcode below and click enter to see bus times for that location.</p>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <form id="messageForm" th:action="@{/busInfo}" method="get">
-                <fieldset>
-                    <legend>Postcode: </legend>
-                    <input type="text" name="postcode">
-                    <input type="submit" value="Get Bus Info" />
-                </fieldset>
-            </form>
+    <div class="container-full">
+
+        <div class="row">
+            <div class="col-lg-12 text-center v-center">
+                <h1>Bus Board</h1>
+                <p class="lead">For all your bus info needs. Enter a postcode below and click enter to see the 2 closest Bus stops and upcoming arrivals</p>
+                <br>
+                <div class="col-lg-12">
+                <form class="shell offset-lg-4 col-lg-4" id="messageForm" th:action="@{/busInfo}" method="get">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="center-block form-control input-lg" name="postcode" title="postcode" placeholder="Enter postcode">
+                        <span class="input-group-btn"><button class="btn btn-lg btn-primary" type="submit">Get Bus Info</button></span>
+                    </div>
+                </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</div> <!-- /row -->
+
 </body>
 </html>

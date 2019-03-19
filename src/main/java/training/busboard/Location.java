@@ -3,7 +3,7 @@ package training.busboard;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties (ignoreUnknown = true)
-class Location {
+public class Location {
 
     private double longitude;
     private double latitude;
