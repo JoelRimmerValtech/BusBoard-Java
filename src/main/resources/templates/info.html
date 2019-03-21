@@ -94,6 +94,7 @@ h1 {
 }
 
 
+
     </style>
 </head>
 <body>
@@ -109,10 +110,10 @@ h1 {
                 <th>Time to Arrival (min)</th>
             </tr>
             <tr th:each="arrival: ${stop.arrivals}">
-                <td data-th="Genre"><span th:text="${stop.commonName}"></span></td>
-                <td data-th="Movie Title"><span th:text="${arrival.lineName}"></span></td>
-                <td data-th="Year"><span th:text="${arrival.destinationName}"></span></td>
-                <td data-th="Gross"><span th:text="${arrival.timeToStation / 60}"></span></td>
+                <td><span th:text="${stop.commonName}"></span></td>
+                <td><span th:text="${arrival.lineName}"></span></td>
+                <td><span th:text="${arrival.destinationName}"></span></td>
+                <td><span th:text="${arrival.timeToStation / 60}"></span></td>
             </tr>
         </table>
         <br>

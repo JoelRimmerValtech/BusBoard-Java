@@ -26,6 +26,11 @@ public class Website {
                 new GetStops().getStops(location.getLongitude(), location.getLatitude())));
     }
 
+    @RequestMapping("/gif")
+    ModelAndView gif(){
+        return new ModelAndView("gif");
+    }
+
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Website.class, args);
     }
