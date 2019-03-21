@@ -19,11 +19,6 @@ public class Website {
         return new ModelAndView("index");
     }
 
-    @RequestMapping("/loading")
-    ModelAndView loading() {
-        return new ModelAndView("loading");
-    }
-
     @RequestMapping("/busInfo")
     ModelAndView busInfo(@RequestParam("postcode") String postcode) {
         Location location = new GetLocation().getLocation(postcode);

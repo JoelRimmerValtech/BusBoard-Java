@@ -3,34 +3,120 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="layout">
 
-    <!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
+<!--@thymesVar id="busInfo" type="training.busboard.web.BusInfo"-->
 
-    <head>
-        <title>Bus Information</title>
-    </head>
+<head>
+    <title>Bus Information</title>
+    <meta http-equiv="refresh" content="30">
     <style>
-       body {
-            background: no-repeat fixed center;
-        }
+@import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+.rwd-table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.rwd-table th {
+  display: none;
+}
+.rwd-table td {
+  display: block;
+}
+.rwd-table td:first-child {
+  padding-top: .5em;
+}
+.rwd-table td:last-child {
+  padding-bottom: .5em;
+}
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .rwd-table td:before {
+    display: none;
+  }
+}
+.rwd-table th, .rwd-table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child, .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child, .rwd-table td:last-child {
+    padding-right: 0;
+  }
+}
+
+body {
+  padding: 0 2em;
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  background: #eee;
+}
+
+h1 {
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: #34495E;
+}
+
+.rwd-table {
+  background: #34495E;
+  color: #fff;
+  border-radius: .4em;
+  overflow: hidden;
+}
+.rwd-table tr {
+  border-color: #46637f;
+}
+.rwd-table th, .rwd-table td {
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .rwd-table th, .rwd-table td {
+    padding: 1em !important;
+  }
+}
+.rwd-table th, .rwd-table td:before {
+  color: #dd5;
+}
+
 
     </style>
-    <body>
-        <div layout:fragment="content" class="container body-content">
-            <h2>Bus Information</h2>
-            <div>
-                <p>You entered postcode <span th:text="${busInfo.postcode}"></span></p>
-                <div th:each="stop: ${busInfo.stopList}">
-                    <div>
-                        <h2>Stop Name <span th:text="${stop.commonName}"></span></h2>
-                        <div th:each="arrival: ${stop.arrivals}">
-                            <p>Bus Number <span th:text="${arrival.lineName}"></span>
-                            Heading Toward <span th:text="${arrival.destinationName}"></span>
-                                Arriving In <span th:text="${arrival.timeToStation / 60}"></span> minutes.</p>
-                        </div>
-                    </div>
-                    <!--img src="https://external-preview.redd.it/cV_bkSjw9GxQpblKyQmH8QED_2pKPHZ9qVr0UumLmBg.jpg?auto=webp&s=3dc58afdd1e9c3e190fff54127a9ade408daf908"-->
-                </div>
-            </div>
-        </div>
-    </body>
+</head>
+<body>
+<div layout:fragment="content" class="container body-content">
+    <h2>Bus Information. You entered postcode <span th:text="${busInfo.postcode}"></span></h2>
+    <br>
+    <div th:each="stop: ${busInfo.stopList}">
+        <table class="rwd-table">
+            <tr>
+                <th>Stop Name</th>
+                <th>Bus Number</th>
+                <th>Destination</th>
+                <th>Time to Arrival (min)</th>
+            </tr>
+            <tr th:each="arrival: ${stop.arrivals}">
+                <td data-th="Genre"><span th:text="${stop.commonName}"></span></td>
+                <td data-th="Movie Title"><span th:text="${arrival.lineName}"></span></td>
+                <td data-th="Year"><span th:text="${arrival.destinationName}"></span></td>
+                <td data-th="Gross"><span th:text="${arrival.timeToStation / 60}"></span></td>
+            </tr>
+        </table>
+        <br>
+    </div>
+</div>
+</body>
 </html>
